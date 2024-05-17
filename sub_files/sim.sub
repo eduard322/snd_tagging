@@ -1,0 +1,11 @@
+executable = shell_scripts/sim.sh
+arguments = $(ProcId) $(N) $(arg_file) $(nEvents) $(out_fold) $(outputFolder)
+environment = "EOS_DATA=$ENV(EOS_DATA) SND_CVMFS_SETUP_FILE=$ENV(SND_CVMFS_SETUP_FILE) SND_DIR=$ENV(SND) CONDOR_FOLDER=$ENV(CONDOR_FOLDER)"
+output                = $ENV(CONDOR_FOLDER)/logs/$(outputFolder)/$(ProcId)/output.out
+error                 = $ENV(CONDOR_FOLDER)/logs/$(outputFolder)/$(ProcId)/error.err
+log                   = $ENV(CONDOR_FOLDER)/logs/$(outputFolder)/$(ProcId)/log.log
+transfer_output_files = ""
+transfer_input_files = $ENV(CONDOR_FOLDER)/start_ali.sh, $ENV(CONDOR_FOLDER)/python_scripts/script.py, $ENV(CONDOR_FOLDER)/params/$(arg_file)
++JobFlavour = "espresso"
+queue $(N)
+

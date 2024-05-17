@@ -1,0 +1,11 @@
+executable = sim_flux.sh
+arguments = $(directory) $(ProcId) $(N) $(Eloss) $(Pcut)
+environment = "EOS_DATA=$ENV(EOS_DATA) SND_CVMFS_SETUP_FILE=$ENV(SND_CVMFS_SETUP_FILE) SND_DIR=$ENV(SND)"
+output = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/output.out
+error = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/error.err
+log = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/logs.log
+#requirements = (CERNEnvironment =!= "qa")
+transfer_output_files = ""
+#transfer_input_files = $ENV(CONDOR_ROOT)/magnet_geofiles/$ENV(MAGNET_GEO)
++JobFlavour = "microcentury"
+queue $(N)

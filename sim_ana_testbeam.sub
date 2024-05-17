@@ -1,0 +1,14 @@
+executable = sim_ana_testbeam.sh
+arguments = $(run) $(ProcId) $(N) $(n_events) $(name)
+#environment = "EOS_DATA=$ENV(EOS_DATA) SND_CVMFS_SETUP_FILE=$ENV(SND_CVMFS_SETUP_FILE) SND_DIR=$ENV(SND)"
+#output = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/output.out
+#error = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/error.err
+#log = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/logs.log
+output                = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/$(ProcId)/output.out
+error                 = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/$(ProcId)/error.err
+log                   = /afs/cern.ch/user/u/ursovsnd/cluster/cluster/logs/$(ProcId)/log.log
+#requirements = (CERNEnvironment =!= "qa")
+transfer_output_files = ""
+transfer_input_files = start_ali.sh, ana_kit.py, new_mufi_exp.py
++JobFlavour = "espresso"
+queue $(N)
